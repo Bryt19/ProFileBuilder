@@ -10,7 +10,7 @@ A modern, professional resume and cover letter builder web application built wit
 
 ### 📋 Resume Builder
 
-- **5+ Professional Templates** - Classic, Modern, Minimal, Creative designs
+- **4+ Professional Templates** - Classic, Modern, Minimal, Creative designs
 - **ATS-Optimized Formatting** - Ensures compatibility with Applicant Tracking Systems
 - **Real-time Preview** - See changes instantly as you type
 - **Photo Upload Support** - Add professional profile pictures
@@ -38,7 +38,7 @@ A modern, professional resume and cover letter builder web application built wit
 
 ## 🚀 Live Demo
 
-Visit the live application: [ProFileBuilder Demo](https://your-demo-link.com)
+Visit the live application: [ProFileBuilder Demo](https://pro-file-builder.vercel.app/)
 
 ## 📁 Project Structure
 
