@@ -253,7 +253,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 - **Email**: support@profilebuilder.com
-- **Contact Form**: [Contact Us](contact.html)
+- **Contact Form**: [Contact Us](Bryt19)
 - **Documentation**: This README file
 - **Issues**: GitHub Issues page
 
