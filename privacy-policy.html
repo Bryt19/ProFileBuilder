@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Privacy Policy | ProFileBuilder</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --accent-color: #3b82f6;
+        --accent-hover: #2563eb;
+        --accent-light: #dbeafe;
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --card-bg: #ffffff;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --border-color: #475569;
+        --accent-color: #60a5fa;
+        --accent-hover: #3b82f6;
+        --accent-light: #1e3a8a;
+        --success-color: #34d399;
+        --warning-color: #fbbf24;
+        --card-bg: #1e293b;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+        --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg-secondary);
+        font-family: "Inter", Arial, sans-serif;
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      /* Header */
+      .header {
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.5em;
+        font-weight: 700;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .logo i {
+        color: var(--accent-color);
+        font-size: 1.2em;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.2em;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .theme-toggle:hover {
+        background: var(--bg-tertiary);
+        color: var(--accent-color);
+      }
+
+      .theme-icon {
+        transition: transform 0.3s;
+      }
+
+      [data-theme="dark"] .theme-icon {
+        transform: rotate(180deg);
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 60px 24px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .page-title {
+        font-size: 2.5em;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+        letter-spacing: -1px;
+      }
+
+      .page-subtitle {
+        font-size: 1.2em;
+        color: var(--text-secondary);
+      }
+
+      .content-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 40px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-md);
+        transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .section:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .section-title i {
+        color: var(--accent-color);
+      }
+
+      .section-content {
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      .section-content p {
+        margin-bottom: 16px;
+      }
+
+      .section-content ul {
+        margin: 16px 0;
+        padding-left: 24px;
+      }
+
+      .section-content li {
+        margin-bottom: 8px;
+      }
+
+      .highlight {
+        background: var(--accent-light);
+        color: var(--accent-color);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+
+      .contact-info {
+        background: var(--bg-tertiary);
+        border-radius: 12px;
+        padding: 24px;
+        margin-top: 24px;
+      }
+
+      .contact-info h4 {
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      .contact-info p {
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+      }
+
+      .contact-info a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--bg-primary);
+        padding: 40px 24px;
+        text-align: center;
+        border-top: 1px solid var(--border-color);
+        margin-top: 60px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer p {
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .footer-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-link:hover {
+        color: var(--accent-color);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 40px 16px;
+        }
+
+        .page-title {
+          font-size: 2em;
+        }
+
+        .content-card {
+          padding: 24px;
+        }
+
+        .header-content {
+          padding: 0 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .page-title {
+          font-size: 1.8em;
+        }
+
+        .content-card {
+          padding: 20px;
+        }
+
+        .section-title {
+          font-size: 1.2em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-file-alt"></i>
+          ProFileBuilder
+        </a>
+        <div class="header-actions">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Light Mode"
+          >
+            <span class="theme-icon">🌙</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Privacy Policy</h1>
+        <p class="page-subtitle">Last updated: July 2025</p>
+      </div>
+
+      <div class="content-card">
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-shield-alt"></i>
+            Information We Collect
+          </h2>
+          <div class="section-content">
+            <p>
+              We collect information you provide directly to us when using our
+              resume and cover letter builder services:
+            </p>
+            <ul>
+              <li>
+                <strong>Personal Information:</strong> Name, email address,
+                phone number, and other contact details you enter in your resume
+                or cover letter
+              </li>
+              <li>
+                <strong>Resume Data:</strong> All information you input into our
+                resume builder, including work experience, education, skills,
+                and achievements
+              </li>
+              <li>
+                <strong>Cover Letter Data:</strong> Content you create using our
+                cover letter generator
+              </li>
+              <li>
+                <strong>Profile Photos:</strong> Images you upload for your
+                resume profile
+              </li>
+              <li>
+                <strong>Usage Data:</strong> How you interact with our services,
+                including templates used and features accessed
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-database"></i>
+            How We Use Your Information
+          </h2>
+          <div class="section-content">
+            <p>We use the information we collect to:</p>
+            <ul>
+              <li>
+                Provide and maintain our resume and cover letter building
+                services
+              </li>
+              <li>Save your progress and allow you to access your documents</li>
+              <li>Generate PDF exports of your resumes and cover letters</li>
+              <li>Improve our services and develop new features</li>
+              <li>Provide customer support and respond to your inquiries</li>
+              <li>Send important updates about our services</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-lock"></i>
+            Data Storage and Security
+          </h2>
+          <div class="section-content">
+            <p>
+              Your data is stored locally in your browser using
+              <span class="highlight">localStorage</span>. This means:
+            </p>
+            <ul>
+              <li>Your information never leaves your device</li>
+              <li>We don't have access to your personal data</li>
+              <li>Your data is automatically saved as you work</li>
+              <li>You can access your documents even when offline</li>
+            </ul>
+            <p>
+              <strong>Note:</strong> Since data is stored locally, clearing your
+              browser data will remove your saved information. We recommend
+              regularly exporting your documents as PDFs for backup.
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-share-alt"></i>
+            Information Sharing
+          </h2>
+          <div class="section-content">
+            <p>
+              We do not share, sell, or trade your personal information with
+              third parties. Since your data is stored locally on your device,
+              we cannot access or share it.
+            </p>
+            <p>
+              The only exception is when you explicitly choose to export your
+              resume or cover letter as a PDF, which creates a file on your
+              device that you control.
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-cookie-bite"></i>
+            Cookies and Tracking
+          </h2>
+          <div class="section-content">
+            <p>Our service uses minimal cookies and tracking:</p>
+            <ul>
+              <li>
+                <strong>Theme Preference:</strong> We save your light/dark mode
+                preference
+              </li>
+              <li>
+                <strong>Template Selection:</strong> We remember your chosen
+                resume template
+              </li>
+              <li>
+                <strong>Color Scheme:</strong> We save your preferred color
+                scheme
+              </li>
+            </ul>
+            <p>
+              We do not use tracking cookies, analytics, or advertising cookies.
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-user-shield"></i>
+            Your Rights
+          </h2>
+          <div class="section-content">
+            <p>You have complete control over your data:</p>
+            <ul>
+              <li>
+                <strong>Access:</strong> All your data is stored locally and
+                accessible through our interface
+              </li>
+              <li>
+                <strong>Modify:</strong> You can edit or delete any information
+                at any time
+              </li>
+              <li>
+                <strong>Export:</strong> You can download your documents as PDFs
+              </li>
+              <li>
+                <strong>Delete:</strong> You can clear all data by using the
+                reset function or clearing browser data
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-calendar-alt"></i>
+            Data Retention
+          </h2>
+          <div class="section-content">
+            <p>Your data is stored locally in your browser until you:</p>
+            <ul>
+              <li>Manually clear your browser data</li>
+              <li>Use the reset function in our application</li>
+              <li>Switch to a different browser or device</li>
+            </ul>
+            <p>
+              We recommend regularly backing up your documents by exporting them
+              as PDFs.
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">
+            <i class="fas fa-exclamation-triangle"></i>
+            Changes to This Policy
+          </h2>
+          <div class="section-content">
+            <p>
+              We may update this Privacy Policy from time to time. We will
+              notify you of any changes by posting the new Privacy Policy on
+              this page and updating the "Last updated" date.
+            </p>
+            <p>
+              Your continued use of our services after any changes constitutes
+              acceptance of the updated policy.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <h4>Contact Us</h4>
+          <p>
+            If you have any questions about this Privacy Policy, please contact
+            us:
+          </p>
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:privacy@profilebuilder.com"
+              >privacy@profilebuilder.com</a
+            >
+          </p>
+          <p>
+            <strong>Contact Page:</strong> <a href="contact.html">Contact Us</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>
+          © 2025 ProFileBuilder. Professional resume and cover letter creation
+          tools.
+        </p>
+        <div class="footer-links">
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms-of-service.html" class="footer-link"
+            >Terms of Service</a
+          >
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Theme functionality
+      function toggleTheme() {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        if (html.getAttribute("data-theme") === "dark") {
+          html.removeAttribute("data-theme");
+          themeIcon.textContent = "🌙";
+          themeToggle.title = "Light Mode";
+          localStorage.setItem("theme", "light");
+        } else {
+          html.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeToggle.title = "Dark Mode";
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Load saved theme on page load
+      function loadTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeToggle.title = "Dark Mode";
+        } else {
+          themeIcon.textContent = "🌙";
+          themeToggle.title = "Light Mode";
+        }
+      }
+
+      // Initialize theme on page load
+      document.addEventListener("DOMContentLoaded", loadTheme);
+    </script>
+  </body>
+</html>

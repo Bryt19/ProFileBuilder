@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Cover Letter Generator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"
+      defer
+    ></script>
+    <style>
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --text-primary: #1a202c;
+        --text-secondary: #4a5568;
+        --border-color: #e0e7ef;
+        --input-border: #e2e8f0;
+        --input-bg: #ffffff;
+        --card-bg: #ffffff;
+        --shadow: 0 6px 32px rgba(30, 41, 59, 0.13);
+        --accent-color: #2563eb;
+        --accent-hover: #1e40af;
+        --secondary-bg: #f7f9fb;
+        --secondary-border: #2563eb;
+        --secondary-hover: #e0e7ff;
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --border-color: #334155;
+        --input-border: #475569;
+        --input-bg: #1e293b;
+        --card-bg: #1e293b;
+        --shadow: 0 6px 32px rgba(0, 0, 0, 0.3);
+        --accent-color: #3b82f6;
+        --accent-hover: #60a5fa;
+        --secondary-bg: #334155;
+        --secondary-border: #3b82f6;
+        --secondary-hover: #475569;
+      }
+
+      html,
+      body {
+        background: var(--bg-secondary);
+        font-family: "Inter", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .header {
+        width: 100%;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        padding: 0;
+        margin: 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .header-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        height: 64px;
+        padding: 0 24px;
+      }
+      .header-title {
+        font-size: 1.18em;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: var(--text-primary);
+        transition: color 0.3s;
+      }
+      .back-btn {
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        font-size: 1.1em;
+        cursor: pointer;
+        margin-right: 18px;
+        font-weight: 600;
+        text-decoration: underline;
+        padding: 0;
+        transition: color 0.2s;
+      }
+      .back-btn:hover {
+        color: var(--accent-hover);
+      }
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.2em;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        margin-left: auto;
+        transition: background-color 0.2s, color 0.2s;
+      }
+      .theme-toggle:hover {
+        background: var(--secondary-bg);
+        color: var(--accent-color);
+      }
+      .theme-icon {
+        transition: transform 0.3s;
+      }
+      [data-theme="dark"] .theme-icon {
+        transform: rotate(180deg);
+      }
+      .main-centered {
+        max-width: 1200px;
+        margin: 40px auto 0 auto;
+        display: flex;
+        gap: 36px;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 70vh;
+        padding: 0 12px 48px 12px;
+      }
+      .form-col,
+      .preview-col {
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: column;
+        background: var(--card-bg);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        border: 1.3px solid var(--border-color);
+        padding: 38px 38px 38px 38px;
+        min-width: 500px;
+        transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+      }
+      .form-col {
+        margin-right: 0;
+        max-width: 420px;
+      }
+      .preview-col {
+        margin-left: 0;
+        align-items: flex-start;
+        max-width: 600px;
+      }
+      .vertical-divider {
+        width: 36px;
+        min-width: 36px;
+        height: 100%;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
+      .vertical-divider::before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 80%;
+        background: linear-gradient(
+          to bottom,
+          var(--border-color) 10%,
+          var(--accent-color) 90%
+        );
+        border-radius: 2px;
+        margin: 0 auto;
+      }
+      .section-title {
+        font-size: 1.08em;
+        font-weight: 600;
+        color: var(--accent-color);
+        margin: 0 0 18px 0;
+        letter-spacing: 0.2px;
+        transition: color 0.3s;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      label {
+        font-size: 1em;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+        transition: color 0.3s;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea {
+        font-size: 1.08em;
+        font-family: inherit;
+        border: 1px solid var(--input-border);
+        border-radius: 6px;
+        padding: 13px 13px;
+        background: var(--input-bg);
+        color: var(--text-primary);
+        transition: border 0.2s, box-shadow 0.2s, background-color 0.3s,
+          color 0.3s;
+        outline: none;
+      }
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="tel"]:focus,
+      textarea:focus {
+        border: 1.5px solid var(--accent-color);
+        box-shadow: 0 0 0 2px var(--accent-color) 22;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 38px;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      button,
+      .btn {
+        font-size: 1.08em;
+        font-weight: 600;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        padding: 13px 28px;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        margin: 0;
+        margin-top: 10px;
+        background: var(--accent-color);
+        color: #fff;
+      }
+      .btn:hover {
+        background: var(--accent-hover);
+      }
+      .btn-secondary {
+        background: var(--secondary-bg);
+        color: var(--secondary-border);
+        border: 1.5px solid var(--secondary-border);
+      }
+      .btn-secondary:hover {
+        background: var(--secondary-hover);
+      }
+      .output-label {
+        font-size: 1.08em;
+        font-weight: 600;
+        margin: 0 0 18px 0;
+        color: var(--text-primary);
+        transition: color 0.3s;
+      }
+      .letter-preview {
+        background: var(--input-bg);
+        border-radius: 8px;
+        box-shadow: none;
+        padding: 24px;
+        min-height: 420px;
+        font-size: 1.08em;
+        font-family: "Inter", Arial, sans-serif;
+        color: var(--text-primary);
+        line-height: 1.7;
+        white-space: pre-line;
+        outline: none;
+        border: 1px solid var(--input-border);
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      }
+      .output-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 36px;
+        transform: translateX(-50%);
+        background: #2563eb;
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-size: 1em;
+        font-weight: 600;
+        box-shadow: 0 2px 12px rgba(30, 41, 59, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: opacity 0.3s;
+      }
+      .toast.show {
+        opacity: 1;
+      }
+      @media (max-width: 900px) {
+        .main-centered {
+          flex-direction: column;
+          gap: 32px;
+          max-width: 98vw;
+        }
+        .form-col,
+        .preview-col {
+          max-width: 100vw;
+          padding: 0;
+        }
+        .form-col {
+          border-right: none;
+          border-bottom: none;
+          margin-bottom: 0;
+        }
+        .preview-col {
+          padding-top: 0;
+        }
+        .vertical-divider {
+          display: none;
+        }
+      }
+      @media (max-width: 600px) {
+        .main-centered {
+          padding: 0 2vw 32px 2vw;
+        }
+        .form-col,
+        .preview-col {
+          padding: 18px 4vw;
+          min-width: 0;
+          max-width: 100vw;
+        }
+        .letter-preview {
+          padding: 0;
+        }
+        button,
+        .btn {
+          width: 100%;
+        }
+        .actions,
+        .output-actions {
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="index.html" class="back-btn">Back</a>
+        <span class="header-title">Cover Letter Generator</span>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          onclick="toggleTheme()"
+          title="Light Mode"
+        >
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+    <div class="main-centered">
+      <!-- Form Column -->
+      <section class="form-col">
+        <div class="section-title">Your Details</div>
+        <form id="coverForm" autocomplete="off">
+          <div class="form-group">
+            <label for="yourName">Full Name</label>
+            <input
+              type="text"
+              id="yourName"
+              placeholder="e.g. Jane Doe"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="e.g. jane@email.com"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="e.g. (555) 123-4567"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="recipient">Recipient Name</label>
+            <input
+              type="text"
+              id="recipient"
+              placeholder="e.g. Ms. Smith"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="company">Company Name</label>
+            <input
+              type="text"
+              id="company"
+              placeholder="e.g. Acme Corp"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="jobTitle">Job Title</label>
+            <input
+              type="text"
+              id="jobTitle"
+              placeholder="e.g. Frontend Developer"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="fit">Why are you a strong fit?</label>
+            <input
+              type="text"
+              id="fit"
+              placeholder="e.g. 5+ years in frontend, passionate about UX"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="skills"
+              >Top Skills / Keywords
+              <span style="color: #94a3b8; font-weight: 400"
+                >(comma separated)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="skills"
+              placeholder="e.g. JavaScript, React, Agile"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="achievements"
+              >Key Achievements / Projects
+              <span style="color: #94a3b8; font-weight: 400"
+                >(comma separated)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="achievements"
+              placeholder="e.g. Built dashboard, Led migration"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="traits"
+              >Personal Traits
+              <span style="color: #94a3b8; font-weight: 400"
+                >(optional)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="traits"
+              placeholder="e.g. detail-oriented, fast learner"
+              autocomplete="off"
+            />
+          </div>
+          <div class="actions">
+            <button type="button" class="btn" id="generateBtn">Generate</button>
+            <button type="button" class="btn btn-secondary" id="resetBtn">
+              Reset
+            </button>
+          </div>
+        </form>
+      </section>
+      <!-- Preview Column -->
+      <section class="preview-col">
+        <div class="output-label">Live Preview</div>
+        <div
+          id="letterPreview"
+          class="letter-preview"
+          contenteditable="true"
+          spellcheck="true"
+          aria-label="Cover Letter Preview"
+        ></div>
+        <div class="output-actions">
+          <button type="button" class="btn" id="copyBtn">Copy</button>
+          <button type="button" class="btn btn-secondary" id="pdfBtn">
+            Download PDF
+          </button>
+        </div>
+      </section>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script>
+      // =================== Theme Functionality ===================
+      function toggleTheme() {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        if (html.getAttribute("data-theme") === "dark") {
+          html.removeAttribute("data-theme");
+          themeIcon.textContent = "🌙";
+          themeToggle.title = "Light Mode";
+          localStorage.setItem("theme", "light");
+        } else {
+          html.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeToggle.title = "Dark Mode";
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Load saved theme on page load
+      function loadTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeToggle.title = "Dark Mode";
+        } else {
+          themeIcon.textContent = "🌙";
+          themeToggle.title = "Light Mode";
+        }
+      }
+
+      // Initialize theme on page load
+      document.addEventListener("DOMContentLoaded", loadTheme);
+
+      // =================== Toast Utility ===================
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 1600);
+      }
+
+      // =================== Debounce Utility ===================
+      let lastCopy = 0,
+        lastPDF = 0;
+      function debounceClick(last, ms = 1200) {
+        const now = Date.now();
+        if (now - last < ms) return false;
+        return true;
+      }
+
+      // =================== Autosave/Restore ===================
+      const fieldIds = [
+        "yourName",
+        "email",
+        "phone",
+        "recipient",
+        "company",
+        "jobTitle",
+        "fit",
+        "skills",
+        "achievements",
+        "traits",
+        "letterPreview",
+      ];
+      // Restore
+      fieldIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && localStorage.getItem("cover_" + id)) {
+          if (id === "letterPreview") {
+            el.innerText = localStorage.getItem("cover_" + id);
+          } else {
+            el.value = localStorage.getItem("cover_" + id);
+          }
+        }
+      });
+      // Save on input
+      fieldIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (id === "letterPreview") {
+            el.addEventListener("input", () => {
+              localStorage.setItem("cover_" + id, el.innerText);
+            });
+          } else {
+            el.addEventListener("input", () => {
+              localStorage.setItem("cover_" + id, el.value);
+            });
+          }
+        }
+      });
+
+      // =================== Date Utility ===================
+      function getTodayFormatted() {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, "0");
+        const dd = String(today.getDate()).padStart(2, "0");
+        return `${yyyy}-${mm}-${dd}`;
+      }
+      function formatDate(dateStr) {
+        if (!dateStr) return "";
+        const d = new Date(dateStr);
+        if (isNaN(d)) return dateStr;
+        return d.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      }
+
+      // =================== Letter Generation ===================
+      function getLetterSections() {
+        // Contact Info
+        const yourName = document.getElementById("yourName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        // Job Info
+        const recipient = document.getElementById("recipient").value.trim();
+        const company = document.getElementById("company").value.trim();
+        const jobTitle = document.getElementById("jobTitle").value.trim();
+        // Letter Content
+        const fit = document.getElementById("fit").value.trim();
+        const skills = document.getElementById("skills").value.trim();
+        const achievements = document
+          .getElementById("achievements")
+          .value.trim();
+        const traits = document.getElementById("traits").value.trim();
+        // Date (auto-filled)
+        const today = getTodayFormatted();
+
+        // Header
+        let header = `<div style='font-weight:700;font-size:1.1em;'>${
+          yourName || "Your Name"
+        }</div>`;
+        let contactLines = [];
+        if (email) contactLines.push(email);
+        if (phone) contactLines.push(phone);
+        header += `<div style='font-size:0.98em;color:#334155;margin-bottom:8px;'>${contactLines.join(
+          " | "
+        )}</div>`;
+        header += `<div style='font-size:0.98em;color:#334155;margin-bottom:18px;'>${formatDate(
+          today
+        )}</div>`;
+        // Recipient block
+        let recipientBlock = "";
+        if (recipient || company) {
+          recipientBlock += `<div style='margin-bottom:18px;'>`;
+          if (recipient) recipientBlock += `${recipient}<br/>`;
+          if (company) recipientBlock += `${company}`;
+          recipientBlock += `</div>`;
+        }
+
+        // Greeting
+        let greet = recipient ? `Dear ${recipient},` : "Dear Hiring Manager,";
+
+        // Introduction
+        let intro = `I am writing to apply for the ${
+          jobTitle || "open position"
+        }${company ? ` at ${company}` : ""}.`;
+        if (fit) intro += ` ${fit}`;
+
+        // Body
+        let skillsPart = skills ? `My key skills include ${skills}.` : "";
+        let achArr = achievements
+          ? achievements
+              .split(",")
+              .map((s) => s.trim())
+              .filter(Boolean)
+          : [];
+        let achPart = achArr.length
+          ? `Notable achievements: ${achArr
+              .map((a) => a[0].toUpperCase() + a.slice(1))
+              .join("; ")}.`
+          : "";
+        let traitsPart = traits ? `Colleagues describe me as ${traits}.` : "";
+        let para2 = [skillsPart, achPart, traitsPart].filter(Boolean).join(" ");
+
+        // Closing
+        let closing =
+          "I would welcome the opportunity to discuss how my background can contribute to your team. Thank you for your consideration.";
+
+        // Signature
+        let signature = `<div style='margin-top:32px;'>Sincerely,<br/>${
+          yourName || "Your Name"
+        }</div>`;
+
+        return {
+          header,
+          recipientBlock,
+          greet,
+          intro,
+          para2,
+          closing,
+          signature,
+        };
+      }
+
+      function generateLetter() {
+        const {
+          header,
+          recipientBlock,
+          greet,
+          intro,
+          para2,
+          closing,
+          signature,
+        } = getLetterSections();
+        return (
+          header +
+          recipientBlock +
+          `<div style='margin-bottom:12px;'>${greet}</div>` +
+          `<div style='margin-bottom:12px;'>${intro}</div>` +
+          (para2 ? `<div style='margin-bottom:12px;'>${para2}</div>` : "") +
+          `<div style='margin-bottom:12px;'>${closing}</div>` +
+          signature
+        );
+      }
+
+      // =================== Event Listeners ===================
+      document
+        .getElementById("generateBtn")
+        .addEventListener("click", function () {
+          const content = generateLetter();
+          const preview = document.getElementById("letterPreview");
+          preview.innerHTML = content;
+          localStorage.setItem("cover_letterPreview", preview.innerText);
+          showToast("Cover letter generated!");
+        });
+
+      document
+        .getElementById("resetBtn")
+        .addEventListener("click", function () {
+          document.getElementById("coverForm").reset();
+          document.getElementById("letterPreview").innerText = "";
+          fieldIds.forEach((id) => localStorage.removeItem("cover_" + id));
+          showToast("Form reset.");
+        });
+
+      document.getElementById("copyBtn").addEventListener("click", function () {
+        if (!debounceClick(lastCopy)) return;
+        lastCopy = Date.now();
+        const text = document.getElementById("letterPreview").innerText;
+        if (!text.trim()) {
+          showToast("Nothing to copy!");
+          return;
+        }
+        navigator.clipboard.writeText(text).then(() => showToast("Copied!"));
+      });
+
+      document.getElementById("pdfBtn").addEventListener("click", function () {
+        if (!debounceClick(lastPDF)) return;
+        lastPDF = Date.now();
+        const preview = document.getElementById("letterPreview");
+        if (!preview.innerHTML.trim()) {
+          showToast("Nothing to download!");
+          return;
+        }
+        showToast("PDF download started…");
+        // Clone the preview for PDF, remove card styling
+        const pdfDiv = preview.cloneNode(true);
+        pdfDiv.style.background = "#fff";
+        pdfDiv.style.borderRadius = "0";
+        pdfDiv.style.boxShadow = "none";
+        pdfDiv.style.padding = "36px 32px";
+        pdfDiv.style.margin = "0 auto";
+        pdfDiv.style.fontFamily = "Inter, Arial, sans-serif";
+        pdfDiv.style.fontSize = "1.1em";
+        pdfDiv.style.color = "#1a202c";
+        pdfDiv.style.lineHeight = "1.7";
+        pdfDiv.style.width = "100%";
+        pdfDiv.style.maxWidth = "600px";
+        // Create a wrapper for html2pdf
+        const wrapper = document.createElement("div");
+        wrapper.appendChild(pdfDiv);
+        document.body.appendChild(wrapper);
+        const opt = {
+          margin: 0.7,
+          filename: "Cover_Letter.pdf",
+          html2canvas: { scale: 1.5 },
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        };
+        html2pdf()
+          .from(pdfDiv)
+          .set(opt)
+          .save()
+          .then(() => {
+            document.body.removeChild(wrapper);
+          })
+          .catch((err) => {
+            document.body.removeChild(wrapper);
+            showToast("PDF generation failed.");
+          });
+      });
+    </script>
+  </body>
+</html>

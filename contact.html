@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Contact Us | ProFileBuilder</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --accent-color: #3b82f6;
+        --accent-hover: #2563eb;
+        --accent-light: #dbeafe;
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --error-color: #ef4444;
+        --card-bg: #ffffff;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --border-color: #475569;
+        --accent-color: #60a5fa;
+        --accent-hover: #3b82f6;
+        --accent-light: #1e3a8a;
+        --success-color: #34d399;
+        --warning-color: #fbbf24;
+        --error-color: #f87171;
+        --card-bg: #1e293b;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+        --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg-secondary);
+        font-family: "Inter", Arial, sans-serif;
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      /* Header */
+      .header {
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.5em;
+        font-weight: 700;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .logo i {
+        color: var(--accent-color);
+        font-size: 1.2em;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.2em;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .theme-toggle:hover {
+        background: var(--bg-tertiary);
+        color: var(--accent-color);
+      }
+
+      .theme-icon {
+        transition: transform 0.3s;
+      }
+
+      [data-theme="dark"] .theme-icon {
+        transform: rotate(180deg);
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 24px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .page-title {
+        font-size: 2.5em;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+        letter-spacing: -1px;
+      }
+
+      .page-subtitle {
+        font-size: 1.2em;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .contact-form-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 40px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-md);
+        transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .contact-info-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 40px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-md);
+        transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .form-title {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .form-title i {
+        color: var(--accent-color);
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      .form-label {
+        display: block;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+
+      .form-input,
+      .form-textarea,
+      .form-select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-size: 1em;
+        font-family: inherit;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .form-input:focus,
+      .form-textarea:focus,
+      .form-select:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px var(--accent-light);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .submit-btn {
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .submit-btn:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+      }
+
+      .submit-btn:disabled {
+        background: var(--text-muted);
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .contact-method {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+        padding: 20px;
+        background: var(--bg-tertiary);
+        border-radius: 12px;
+        transition: background-color 0.3s;
+      }
+
+      .contact-method:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        background: var(--accent-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2em;
+      }
+
+      .contact-details h4 {
+        color: var(--text-primary);
+        margin-bottom: 4px;
+        font-weight: 600;
+      }
+
+      .contact-details p {
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+      }
+
+      .contact-details a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-details a:hover {
+        text-decoration: underline;
+      }
+
+      .faq-section {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 40px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-md);
+        transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .faq-title {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .faq-title i {
+        color: var(--accent-color);
+      }
+
+      .faq-item {
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .faq-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .faq-question {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        font-size: 1.1em;
+      }
+
+      .faq-answer {
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .success-message {
+        background: var(--success-color);
+        color: white;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        display: none;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .error-message {
+        background: var(--error-color);
+        color: white;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        display: none;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--bg-primary);
+        padding: 40px 24px;
+        text-align: center;
+        border-top: 1px solid var(--border-color);
+        margin-top: 60px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer p {
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .footer-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-link:hover {
+        color: var(--accent-color);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 40px 16px;
+        }
+
+        .page-title {
+          font-size: 2em;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .contact-form-card,
+        .contact-info-card,
+        .faq-section {
+          padding: 24px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .header-content {
+          padding: 0 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .page-title {
+          font-size: 1.8em;
+        }
+
+        .contact-form-card,
+        .contact-info-card,
+        .faq-section {
+          padding: 20px;
+        }
+
+        .contact-method {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-file-alt"></i>
+          ProFileBuilder
+        </a>
+        <div class="header-actions">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Light Mode"
+          >
+            <span class="theme-icon">🌙</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Contact Us</h1>
+        <p class="page-subtitle">
+          Have questions or need support? We're here to help you create the
+          perfect resume and cover letter.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form-card">
+          <h2 class="form-title">
+            <i class="fas fa-envelope"></i>
+            Send us a Message
+          </h2>
+
+          <div id="success-message" class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <span>Thank you! Your message has been sent successfully.</span>
+          </div>
+
+          <div id="error-message" class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Something went wrong. Please try again.</span>
+          </div>
+
+          <form id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  class="form-input"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="form-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <select id="subject" name="subject" class="form-select" required>
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="feature">Feature Request</option>
+                <option value="bug">Bug Report</option>
+                <option value="feedback">Feedback</option>
+                <option value="privacy">Privacy Question</option>
+                <option value="legal">Legal Question</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-textarea"
+                placeholder="Tell us how we can help you..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info-card">
+          <h2 class="form-title">
+            <i class="fas fa-info-circle"></i>
+            Get in Touch
+          </h2>
+
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Email Support</h4>
+              <p>For general inquiries and support</p>
+              <a href="mailto:support@profilebuilder.com"
+                >support@profilebuilder.com</a
+              >
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Privacy & Legal</h4>
+              <p>For privacy and legal questions</p>
+              <a href="mailto:legal@profilebuilder.com"
+                >legal@profilebuilder.com</a
+              >
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Response Time</h4>
+              <p>
+                We typically respond within 24-48 hours during business days
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Service Status</h4>
+              <p>
+                Our service is available 24/7 for resume and cover letter
+                creation
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="faq-section">
+        <h2 class="faq-title">
+          <i class="fas fa-question-circle"></i>
+          Frequently Asked Questions
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Is ResumeBuilder completely free to use?
+          </div>
+          <div class="faq-answer">
+            Yes! All our resume and cover letter building features are
+            completely free. There are no hidden fees or premium tiers.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">How do I save my progress?</div>
+          <div class="faq-answer">
+            Your work is automatically saved to your browser's local storage as
+            you type. You can also export your documents as PDFs for backup.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Are my resumes ATS-friendly?</div>
+          <div class="faq-answer">
+            Absolutely! All our templates are designed to be ATS (Applicant
+            Tracking System) friendly with clean formatting and standard
+            sections.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Can I use my own photos in my resume?</div>
+          <div class="faq-answer">
+            Yes, you can upload a profile photo to your resume. We support
+            common image formats like JPG, PNG, and GIF.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">What if I lose my data?</div>
+          <div class="faq-answer">
+            Since data is stored locally, we recommend regularly exporting your
+            documents as PDFs. If you clear your browser data, your saved
+            information will be lost.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Do you store my personal information?</div>
+          <div class="faq-answer">
+            No, we don't store your personal information on our servers. All
+            data is stored locally in your browser using localStorage.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>
+          © 2025 ProFileBuilder. Professional resume and cover letter creation
+          tools.
+        </p>
+        <div class="footer-links">
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms-of-service.html" class="footer-link"
+            >Terms of Service</a
+          >
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Theme functionality
+      function toggleTheme() {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        if (html.getAttribute("data-theme") === "dark") {
+          html.removeAttribute("data-theme");
+          themeIcon.textContent = "🌙";
+          themeToggle.title = "Light Mode";
+          localStorage.setItem("theme", "light");
+        } else {
+          html.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeToggle.title = "Dark Mode";
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Load saved theme on page load
+      function loadTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeToggle.title = "Dark Mode";
+        } else {
+          themeIcon.textContent = "🌙";
+          themeToggle.title = "Light Mode";
+        }
+      }
+
+      // Contact form handling
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const submitBtn = document.getElementById("submit-btn");
+          const successMessage = document.getElementById("success-message");
+          const errorMessage = document.getElementById("error-message");
+
+          // Disable submit button
+          submitBtn.disabled = true;
+          submitBtn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+          // Hide any existing messages
+          successMessage.style.display = "none";
+          errorMessage.style.display = "none";
+
+          // Simulate form submission (replace with actual form handling)
+          setTimeout(() => {
+            // Show success message
+            successMessage.style.display = "flex";
+
+            // Reset form
+            document.getElementById("contact-form").reset();
+
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              '<i class="fas fa-paper-plane"></i> Send Message';
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+              successMessage.style.display = "none";
+            }, 5000);
+          }, 2000);
+        });
+
+      // Initialize theme on page load
+      document.addEventListener("DOMContentLoaded", loadTheme);
+    </script>
+  </body>
+</html>
