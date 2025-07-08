@@ -933,72 +933,20 @@ body.dark .progress-indicator {
     flex-direction: column;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
-    height: auto;
   }
 
   .toolbar-controls {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
-  }
-
-  .control-group {
-    min-width: 100px;
-    flex: 1;
-  }
-
-  .control-group select {
-    font-size: 0.8rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    font-size: 0.8rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  .icon-btn {
-    padding: var(--spacing-xs);
-    font-size: 0.9rem;
   }
 
   .form-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .form-group {
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .form-group label {
-    font-size: 0.8rem;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .form-group small {
-    font-size: 0.7rem;
-  }
-
-  input,
-  textarea,
-  select {
-    font-size: 16px; /* Prevents zoom on iOS */
   }
 
   #resumePreview {
     padding: var(--spacing-lg);
-    font-size: 0.9rem;
-  }
-
-  #resumePreview h2 {
-    font-size: 1.3rem;
-  }
-
-  #resumePreview h3 {
-    font-size: 1.1rem;
   }
 
   #resumePreview header {
@@ -1014,33 +962,11 @@ body.dark .progress-indicator {
     justify-content: center;
   }
 
-  .photo-upload {
-    padding: var(--spacing-md);
-    min-height: 120px;
-  }
-
-  .photo-upload span {
-    font-size: 0.9rem;
-  }
-
-  .photo-upload small {
-    font-size: 0.75rem;
-  }
-
   .progress-indicator {
     bottom: var(--spacing-sm);
     right: var(--spacing-sm);
     left: var(--spacing-sm);
     min-width: auto;
-    padding: var(--spacing-sm);
-  }
-
-  .progress-text {
-    font-size: 0.8rem;
-  }
-
-  .save-status {
-    font-size: 0.75rem;
   }
 }
 
@@ -1049,53 +975,9 @@ body.dark .progress-indicator {
     padding: var(--spacing-md);
   }
 
-  .toolbar {
-    padding: var(--spacing-sm);
-  }
-
-  .toolbar-controls {
-    gap: var(--spacing-xs);
-  }
-
-  .control-group {
-    min-width: 80px;
-  }
-
-  .control-group label {
-    font-size: 0.7rem;
-  }
-
-  .control-group select {
-    font-size: 0.75rem;
-    padding: var(--spacing-xs);
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    font-size: 0.75rem;
-    padding: var(--spacing-xs);
-  }
-
-  .icon-btn {
-    padding: var(--spacing-xs);
-    font-size: 0.8rem;
-  }
-
   .form-section,
   .preview-wrapper {
     padding: var(--spacing-lg);
-  }
-
-  .form-header {
-    padding: var(--spacing-lg);
-  }
-
-  .form-header h2 {
-    font-size: 1.3rem;
-  }
-
-  .form-header p {
-    font-size: 0.8rem;
   }
 
   .section-header {
@@ -1104,46 +986,8 @@ body.dark .progress-indicator {
     gap: var(--spacing-sm);
   }
 
-  .section-header h3 {
-    font-size: 1rem;
-  }
-
-  .section-header i {
-    font-size: 0.9rem;
-  }
-
   .addBtn {
     align-self: flex-start;
-    font-size: 0.75rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  .removeBtn {
-    font-size: 0.75rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  input,
-  textarea,
-  select {
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-
-  #resumePreview {
-    font-size: 0.85rem;
-    padding: var(--spacing-md);
-  }
-
-  #resumePreview h2 {
-    font-size: 1.2rem;
-  }
-
-  #resumePreview h3 {
-    font-size: 1rem;
-  }
-
-  .contact-info span {
-    font-size: 0.8rem;
   }
 }
 
