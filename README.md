@@ -282,5 +282,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Made with ❤️ for job seekers worldwide**
 
 _ProFileBuilder - Your professional profile, simplified._
-#   P r o F i l e B u i l d e r  
- 
+#
